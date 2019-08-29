@@ -1,5 +1,5 @@
 # Deep Floor Plan Recognition using a Multi-task Network with Room-boundary-Guided Attention
-By Zhiliang ZENG, XIANZHI LI, Ying Kin Yu, and Chi-Wing Fu
+By Zhiliang ZENG, Xianzhi LI, Ying Kin Yu, and Chi-Wing Fu
 
 [2019/08/28: updated train/test/score code & dataset]
 
@@ -7,11 +7,11 @@ By Zhiliang ZENG, XIANZHI LI, Ying Kin Yu, and Chi-Wing Fu
 
 ## Requirements
 
-- Please install tensorflow-gpu
+- Please install OpenCV
 - Please install Python 2.7
-- We used Nvidia Titan Xp GPU with CUDA 8.0 installed
+- Please install tensorflow-gpu
 
-Our code have been tested by using tensorflow-gpu==1.10.1
+Our code have been tested by using tensorflow-gpu==1.10.1 & OpenCV==3.1.0. We used Nvidia Titan Xp GPU with CUDA 9.0 installed.
 
 ## Python packages
 
