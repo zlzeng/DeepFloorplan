@@ -54,13 +54,13 @@ python demo.py --im_path=./demo/45719584.jpg
 To train the network, simply run
 
 ```bash
-python main.py --pharse=Train
+python main.py --phase=Train
 ```
 
 Run the following command to generate network outputs, all results are saved as png format.
 
 ```bash
-python main.py --pharse=Test
+python main.py --phase=Test
 ```
 
 To compute the evaluation metrics, please first inference the results, then simply run
