@@ -49,7 +49,7 @@ def fill_break_line(cw_mask):
 def refine_room_region(cw_mask, rm_ind):
 	label_rm, num_label = ndimage.label((1-cw_mask))
 	new_rm_ind = np.zeros(rm_ind.shape)
-	for j in xrange(1, num_label+1):  
+	for j in range(1, num_label+1):  
 		mask = (label_rm == j).astype(np.uint8)
 		ys, xs = np.where(mask!=0)
 		area = (np.amax(xs)-np.amin(xs))*(np.amax(ys)-np.amin(ys))

@@ -31,7 +31,7 @@ def data_loader_bd_rm_from_tfrecord(batch_size=1):
 class Network(object):
 	"""docstring for Network"""
 	def __init__(self, dtype=tf.float32):
-		print 'Initial nn network object...'
+		print('Initial nn network object...')
 		self.dtype = dtype
 		self.pre_train_restore_map = {'vgg_16/conv1/conv1_1/weights':'FNet/conv1_1/W', # {'checkpoint_scope_var_name':'current_scope_var_name'} shape must be the same
 									'vgg_16/conv1/conv1_1/biases':'FNet/conv1_1/b',	
