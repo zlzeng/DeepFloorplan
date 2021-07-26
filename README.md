@@ -1,6 +1,8 @@
 # Deep Floor Plan Recognition using a Multi-task Network with Room-boundary-Guided Attention
 By Zhiliang ZENG, Xianzhi LI, Ying Kin Yu, and Chi-Wing Fu
 
+[2021/07/26: updated download link]
+
 [2019/08/28: updated train/test/score code & dataset]
 
 [2019/07/29: updated demo code & pretrained model]
@@ -26,7 +28,7 @@ Our code has been tested by using tensorflow-gpu==1.10.1 & OpenCV==3.1.0. We use
 
 ## Data
 
-We share all our annotations and train-test split file [here](https://mycuhk-my.sharepoint.com/:f:/g/personal/1155052510_link_cuhk_edu_hk/EgyJhisy04hNnxKncWl5zksBf9zDKDpMJ7c0V-q53_pxuA?e=P0BjZd). Or download the annotation using the link in file "dataset/download_links.txt". The additional round plan is included in the annotations.
+We share all our annotations and train-test split file [here](https://mycuhk-my.sharepoint.com/:f:/g/personal/1155052510_link_cuhk_edu_hk/EseSIeHQgPxArPlNpGdVp38BIjUg70jMiAO-w4f3s8B_dg?e=UXKbYO). Or download the annotation using the link in file "dataset/download_links.txt". The additional round plan is included in the annotations.
 
 Our annotations are saved as png format. The name with suffixes "\_wall.png", "\_close.png" and "\_room.png" are denoted "wall", "door & window" and "room types" label, respectively. We used these labels to train our multi-task network.
 
