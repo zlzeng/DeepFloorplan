@@ -29,7 +29,7 @@ def post_process(input_dir, save_dir, merge=True):
 
 	n = len(input_paths)
 	# n = 1
-	for i in xrange(n):
+	for i in range(n):
 		im = imread(input_paths[i], mode='RGB')
 		im_ind = rgb2ind(im, color_map=floorplan_fuse_map)
 		# seperate image into room-seg & boundary-seg
@@ -64,7 +64,7 @@ def post_process(input_dir, save_dir, merge=True):
 		# ignore the background mislabeling
 		new_rm_ind = fuse_mask*new_rm_ind
 
-		print 'Saving {}th refined room prediciton to {}'.format(i, out_paths[i])
+		print('Saving {}th refined room prediciton to {}'.format(i, out_paths[i]))
 		if merge:
 			new_rm_ind[bd_ind==9] = 9
 			new_rm_ind[bd_ind==10] = 10

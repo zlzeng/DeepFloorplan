@@ -33,7 +33,7 @@ def evaluate_semantic(benchmark_path, result_dir, num_of_classes=11, need_merge_
 	n = len(im_paths)
 	# n = 1
 	hist = np.zeros((num_of_classes, num_of_classes))
-	for i in xrange(n):
+	for i in range(n):
 		im = imread(im_paths[i], mode='RGB')
 		if need_merge_result:
 			im_d = imread(im_d_paths[i], mode='L')
@@ -82,28 +82,28 @@ def evaluate_semantic(benchmark_path, result_dir, num_of_classes=11, need_merge_
 		name = im_paths[i].split('/')[-1]
 		r_name = r_paths[i].split('/')[-1]
 		
-		print 'Evaluating {}(im) <=> {}(gt)...'.format(name, r_name)
+		print('Evaluating {}(im) <=> {}(gt)...'.format(name, r_name))
 
 		hist += fast_hist(im_ind.flatten(), rr_ind.flatten(), num_of_classes)
 
-	print '*'*60
+	print('*'*60)
 	# overall accuracy
 	acc = np.diag(hist).sum() / hist.sum()
-	print 'overall accuracy {:.4}'.format(acc)
+	print('overall accuracy {:.4}'.format(acc))
 	# per-class accuracy, avoid div zero
 	acc = np.diag(hist) / (hist.sum(1) + 1e-6)
-	print 'room-type: mean accuracy {:.4}, room-type+bd: mean accuracy {:.4}'.format(np.nanmean(acc[:7]), (np.nansum(acc[:7])+np.nansum(acc[-2:]))/9.)
-	for t in xrange(0, acc.shape[0]):
+	print('room-type: mean accuracy {:.4}, room-type+bd: mean accuracy {:.4}'.format(np.nanmean(acc[:7]), (np.nansum(acc[:7])+np.nansum(acc[-2:]))/9.))
+	for t in range(0, acc.shape[0]):
 		if t not in [7, 8]:
-			print 'room type {}th, accuracy = {:.4}'.format(t, acc[t])
+			print('room type {}th, accuracy = {:.4}'.format(t, acc[t]))
 
-	print '*'*60
+	print('*'*60)
 	# per-class IU, avoid div zero
 	iu = np.diag(hist) / (hist.sum(1) + 1e-6 + hist.sum(0) - np.diag(hist))
-	print 'room-type: mean IoU {:.4}, room-type+bd: mean IoU {:.4}'.format(np.nanmean(iu[:7]), (np.nansum(iu[:7])+np.nansum(iu[-2:]))/9.)
-	for t in xrange(iu.shape[0]):
+	print('room-type: mean IoU {:.4}, room-type+bd: mean IoU {:.4}'.format(np.nanmean(iu[:7]), (np.nansum(iu[:7])+np.nansum(iu[-2:]))/9.))
+	for t in range(iu.shape[0]):
 		if t not in [7,8]: # ignore class 7 & 8
-			print 'room type {}th, IoU = {:.4}'.format(t, iu[t])
+			print('room type {}th, IoU = {:.4}'.format(t, iu[t]))
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
@@ -118,5 +118,5 @@ if __name__ == '__main__':
 	tic = time.time()
 	evaluate_semantic(benchmark_path, result_dir, need_merge_result=False, im_downsample=False, gt_downsample=True) # same as previous line but 11 classes by combining the opening and wall line
 
-	print "*"*60
-	print "Evaluate time: {} sec".format(time.time()-tic)
+	print("*"*60)
+	print("Evaluate time: {} sec".format(time.time()-tic))
