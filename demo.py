@@ -3,7 +3,8 @@ import argparse
 import numpy as np
 import tensorflow as tf
 
-from scipy.misc import imread, imsave, imresize
+#from scipy.misc import imread, imsave, imresize
+from PIL import Image
 from matplotlib import pyplot as plt
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -34,30 +35,30 @@ floorplan_map = {
 def ind2rgb(ind_im, color_map=floorplan_map):
 	rgb_im = np.zeros((ind_im.shape[0], ind_im.shape[1], 3))
 
-	for i, rgb in color_map.iteritems():
+	for i, rgb in color_map.items():
 		rgb_im[(ind_im==i)] = rgb
 
 	return rgb_im
 
 def main(args):
 	# load input
-	im = imread(args.im_path, mode='RGB')
-	im = im.astype(np.float32)
-	im = imresize(im, (512,512,3)) / 255.
+	im = Image.open(args.im_path)
+	im = np.asarray(im)
+	im = np.array(Image.fromarray(im).resize((512,512))) / 255.
 
 	# create tensorflow session
-	with tf.Session() as sess:
+	with tf.compat.v1.Session() as sess:
 		
 		# initialize
-		sess.run(tf.group(tf.global_variables_initializer(),
-					tf.local_variables_initializer()))
+		sess.run(tf.group(tf.compat.v1.global_variables_initializer(),
+					tf.compat.v1.local_variables_initializer()))
 
 		# restore pretrained model
-		saver = tf.train.import_meta_graph('./pretrained/pretrained_r3d.meta')
+		saver = tf.compat.v1.train.import_meta_graph('./pretrained/pretrained_r3d.meta')
 		saver.restore(sess, './pretrained/pretrained_r3d')
 
 		# get default graph
-		graph = tf.get_default_graph()
+		graph = tf.compat.v1.get_default_graph()
 
 		# restore inputs & outpus tensor
 		x = graph.get_tensor_by_name('inputs:0')
