@@ -2,7 +2,7 @@ import numpy as np
 
 import tensorflow as tf
 
-from scipy.misc import imread, imresize, imsave
+import imageio
 from matplotlib import pyplot as plt
 from rgb_ind_convertor import *
 
@@ -14,18 +14,18 @@ import time
 def load_raw_images(path):
 	paths = path.split('\t')
 
-	image = imread(paths[0], mode='RGB')
-	wall  = imread(paths[1], mode='L')
-	close = imread(paths[2], mode='L')
-	room  = imread(paths[3], mode='RGB')
-	close_wall = imread(paths[4], mode='L')
+	image = imageio.imread(paths[0], mode='RGB')
+	wall  = imageio.imread(paths[1], mode='L')
+	close = imageio.imread(paths[2], mode='L')
+	room  = imageio.imread(paths[3], mode='RGB')
+	close_wall = imageio.imread(paths[4], mode='L')
 
 	# NOTE: imresize will rescale the image to range [0, 255], also cast data into uint8 or uint32
-	image = imresize(image, (512, 512, 3))
-	wall = imresize(wall, (512, 512))
-	close = imresize(close, (512, 512))
-	close_wall = imresize(close_wall, (512, 512))
-	room = imresize(room, (512, 512, 3))
+	image = imageio.imresize(image, (512, 512, 3))
+	wall = imageio.imresize(wall, (512, 512))
+	close = imageio.imresize(close, (512, 512))
+	close_wall = imageio.imresize(close_wall, (512, 512))
+	room = imageio.imresize(room, (512, 512, 3))
 
 	room_ind = rgb2ind(room)
 
@@ -144,16 +144,16 @@ def read_record(data_path, batch_size=1, size=512):
 def load_seg_raw_images(path):
 	paths = path.split('\t')
 
-	image = imread(paths[0], mode='RGB')
-	close = imread(paths[2], mode='L')
-	room  = imread(paths[3], mode='RGB')
-	close_wall = imread(paths[4], mode='L')
+	image = imageio.imread(paths[0], mode='RGB')
+	close = imageio.imread(paths[2], mode='L')
+	room  = imageio.imread(paths[3], mode='RGB')
+	close_wall = imageio.imread(paths[4], mode='L')
 
 	# NOTE: imresize will rescale the image to range [0, 255], also cast data into uint8 or uint32
-	image = imresize(image, (512, 512, 3))
-	close = imresize(close, (512, 512)) / 255
-	close_wall = imresize(close_wall, (512, 512)) / 255
-	room = imresize(room, (512, 512, 3))
+	image = imageio.imresize(image, (512, 512, 3))
+	close = imageio.imresize(close, (512, 512)) / 255
+	close_wall = imageio.imresize(close_wall, (512, 512)) / 255
+	room = imageio.imresize(room, (512, 512, 3))
 
 	room_ind = rgb2ind(room)
 
@@ -247,16 +247,16 @@ def read_seg_record(data_path, batch_size=1, size=512):
 def load_bd_rm_images(path):
 	paths = path.split('\t')
 
-	image = imread(paths[0], mode='RGB')
-	close = imread(paths[2], mode='L')
-	room  = imread(paths[3], mode='RGB')
-	close_wall = imread(paths[4], mode='L')
+	image = imageio.imread(paths[0], mode='RGB')
+	close = imageio.imread(paths[2], mode='L')
+	room  = imageio.imread(paths[3], mode='RGB')
+	close_wall = imageio.imread(paths[4], mode='L')
 
 	# NOTE: imresize will rescale the image to range [0, 255], also cast data into uint8 or uint32
-	image = imresize(image, (512, 512, 3))
-	close = imresize(close, (512, 512)) / 255.
-	close_wall = imresize(close_wall, (512, 512)) / 255.
-	room = imresize(room, (512, 512, 3))
+	image = imageio.imresize(image, (512, 512, 3))
+	close = imageio.imresize(close, (512, 512)) / 255.
+	close_wall = imageio.imresize(close_wall, (512, 512)) / 255.
+	room = imageio.imresize(room, (512, 512, 3))
 
 	room_ind = rgb2ind(room)
 
